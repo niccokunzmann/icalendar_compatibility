@@ -20,15 +20,23 @@ from pathlib import Path
 import pytest
 from icalendar import Calendar
 
-from icalendar_compatibility import Event
+from icalendar_compatibility import Location, LocationSpec
 
 HERE = Path(__file__).parent
 EVENTS = HERE / "events"
 
 for file in EVENTS.iterdir():
-    if file.suffix == ".ics":
-        def _fixture(path:Path=file) -> Event:
+    if file.suffix.lower() == ".ics" and "location" in file.stem:
+
+        def _fixture(location_spec: LocationSpec, path: Path = file) -> Location:
             """Create an event adapter."""
             cal = Calendar.from_ical(path.read_text())
-            return Event(cal.events[0])
-        pytest.fixture(name=file.stem)(_fixture)
+            assert len(cal.events) == 1, f"We need one event only, not {len(cal.events)} in {path.stem}"
+            return Location(cal.events[0], location_spec)
+        locals()[file.stem] = pytest.fixture(_fixture)
+
+
+@pytest.fixture(params=[LocationSpec.openstreetmap_org, LocationSpec.bing_com, LocationSpec.google_co_uk])
+def location_spec(request) -> LocationSpec:
+    """The default spec."""
+    return request.param()

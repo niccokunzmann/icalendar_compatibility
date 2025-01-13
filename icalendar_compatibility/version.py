@@ -14,17 +14,41 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see
 # <https://www.gnu.org/licenses/>.
-"""Create compatibility access for icalendar components."""
+try:
+    from ._version import __version__, __version_tuple__, version, version_tuple
+except ModuleNotFoundError:
+    __version__ = version = "0.0dev0"
+    __version_tuple__ = version_tuple = (0, 0, "dev0")
+import sys
+from importlib.metadata import version as get_version
 
-from .location import Location, LocationSpec
-from .version import __version__, __version_tuple__, version, version_tuple
+cli_version = f"""{__version__}
+
+Components:
+"""
+modules = [
+    "recurring-ical-events",
+    "icalendar",
+    "python-dateutil",
+    "pytz",
+    "click",
+    "tzdata",
+    "x-wr-timezone",
+]
+modules.sort()
+for module in modules:
+    try:
+        cli_version += f"{module}: {get_version(module)}\n"
+    except ModuleNotFoundError:  # noqa: PERF203
+        cli_version += f"{module}: not installed\n"
+
+cli_version += f"""
+Python: {sys.version}"""
 
 __all__ = [
-    "Event",
     "__version__",
-    "__version_tuple__",
     "version",
+    "__version_tuple__",
     "version_tuple",
-    "LocationSpec",
-    "Location"
+    "cli_version",
 ]
