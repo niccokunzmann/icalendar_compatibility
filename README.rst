@@ -31,6 +31,13 @@ This package is based on `icalendar`_.
 .. _`RFC 5545`: https://www.rfc-editor.org/rfc/rfc5545.html
 .. _`icalendar`: https://pypi.org/project/icalendar/
 
+
+Links:
+
+- `documentation`
+- `source code`
+- `change log`
+
 Contributing
 ------------
 
@@ -56,5 +63,7 @@ Related Work
 
 
 .. _`documentation`: https://icalendar-compatibility.readthedocs.io
+.. _`source code`: https://github.com/niccokunzmann/icalendar_compatibility
+.. _`change log`: https://icalendar-compatibility.readthedocs.io
 
 
