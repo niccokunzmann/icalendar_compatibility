@@ -48,7 +48,7 @@ extensions = [
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
-    "icalendar": ("https://icalendar.readthedocs.io/", None),
+    "icalendar": ("https://icalendar.readthedocs.io/en/latest/", None),
     }
 
 templates_path = ["_templates"]

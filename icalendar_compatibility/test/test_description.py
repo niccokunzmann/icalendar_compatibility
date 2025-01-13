@@ -14,18 +14,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see
 # <https://www.gnu.org/licenses/>.
-"""Create compatibility access for icalendar components."""
+"""Test getting the description of calendar files."""
 
-from .description import Description
-from .location import Location, LocationSpec
-from .version import __version__, __version_tuple__, version, version_tuple
+from icalendar_compatibility.description import Description
 
-__all__ = [
-    "Description",
-    "__version__",
-    "__version_tuple__",
-    "version",
-    "version_tuple",
-    "LocationSpec",
-    "Location",
-]
+
+def test_no_description_is_there(no_description:Description):
+    """We should have no description."""
+    assert no_description.text == ""
+    assert no_description.html == ""
+
+def test_html_description_is_recognized(description_html:Description):
+    """Check that we recognize the HTML description."""
+    

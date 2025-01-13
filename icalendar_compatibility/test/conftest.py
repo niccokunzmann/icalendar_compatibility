@@ -21,22 +21,36 @@ import pytest
 from icalendar import Calendar
 
 from icalendar_compatibility import Location, LocationSpec
+from icalendar_compatibility.description import Description
 
 HERE = Path(__file__).parent
 EVENTS = HERE / "events"
 
 for file in EVENTS.iterdir():
-    if file.suffix.lower() == ".ics" and "location" in file.stem:
+    if file.suffix.lower() == ".ics":
+        def _fixture():
+            raise NotImplementedError("Do not know what to do with this.")
 
-        def _fixture(location_spec: LocationSpec, path: Path = file) -> Location:
-            """Create an event adapter."""
-            cal = Calendar.from_ical(path.read_text())
-            assert (
-                len(cal.events) == 1
-            ), f"We need one event only, not {len(cal.events)} in {path.stem}"
-            return Location(cal.events[0], location_spec)
+        if "location" in file.stem:
+            def _fixture(location_spec: LocationSpec, path: Path = file) -> Location:
+                """Create an event adapter."""
+                cal = Calendar.from_ical(path.read_text())
+                assert (
+                    len(cal.events) == 1
+                ), f"We need one event only, not {len(cal.events)} in {path.stem}"
+                return Location(cal.events[0], location_spec)
+        elif "description" in file.stem:
+            def _fixture(path: Path = file) -> Description:
+                """Create an event adapter."""
+                cal = Calendar.from_ical(path.read_text())
+                assert (
+                    len(cal.events) == 1
+                ), f"We need one event only, not {len(cal.events)} in {path.stem}"
+                return Description(cal.events[0])
 
         locals()[file.stem] = pytest.fixture(_fixture)
+    else:
+        raise ValueError(f"Do not know what to do with {file}")
 
 
 @pytest.fixture(

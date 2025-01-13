@@ -1,7 +1,7 @@
 Usage
 =====
 
-:module:`icalendar_compatibility` is based on :module:`icalendar`.
+``icalendar_compatibility`` is based on `icalendar`.
 The information is extracted from the icalendar components and more compatibility with other ics generators is provided.
 
 In order to extract information, we have to generate an event first.
