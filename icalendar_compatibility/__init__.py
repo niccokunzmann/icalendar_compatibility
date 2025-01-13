@@ -26,5 +26,5 @@ __all__ = [
     "version",
     "version_tuple",
     "LocationSpec",
-    "Location"
+    "Location",
 ]

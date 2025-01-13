@@ -19,9 +19,7 @@ from icalendar_compatibility import Location, LocationSpec
 
 def test_altrep(location_altrep: Location):
     """Check the usage of altrep."""
-    assert (
-        location_altrep.url == "https://www.openstreetmap.org/relation/62422"
-    )
+    assert location_altrep.url == "https://www.openstreetmap.org/relation/62422"
     assert location_altrep.text == "Berlin"
 
 
@@ -30,7 +28,9 @@ def test_geo_in_location_text(location_geo_misplaced: Location):
     assert location_geo_misplaced.text == "50.1075325012207, 14.2693090438843"
 
 
-def test_geo_in_location_geo(location_geo_misplaced: Location, location_spec: LocationSpec):
+def test_geo_in_location_geo(
+    location_geo_misplaced: Location, location_spec: LocationSpec
+):
     """Check the link is as expected."""
     assert location_geo_misplaced.lat == 50.1075325012207
     assert location_geo_misplaced.lon == 14.2693090438843
@@ -71,13 +71,20 @@ def test_link_from_geo_2(location_geo_misplaced: Location, location_spec: Locati
 
 
 def test_get_geo_url():
-    assert LocationSpec(geo_url="{lat}x{lon}", text_url="").get_geo_url(lat=50, lon=14) == "50x14"
     assert (
-        LocationSpec(geo_url="{lat}x{lon}, z={zoom}", text_url="").get_geo_url(lat=50, lon=14)
+        LocationSpec(geo_url="{lat}x{lon}", text_url="").get_geo_url(lat=50, lon=14)
+        == "50x14"
+    )
+    assert (
+        LocationSpec(geo_url="{lat}x{lon}, z={zoom}", text_url="").get_geo_url(
+            lat=50, lon=14
+        )
         == "50x14, z=16"
     )
     assert (
-        LocationSpec(geo_url="{lat}x{lon}, z={zoom}", text_url="").get_geo_url(lat=5, lon=1, zoom=4)
+        LocationSpec(geo_url="{lat}x{lon}, z={zoom}", text_url="").get_geo_url(
+            lat=5, lon=1, zoom=4
+        )
         == "5x1, z=4"
     )
 

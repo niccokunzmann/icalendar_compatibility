@@ -31,12 +31,21 @@ for file in EVENTS.iterdir():
         def _fixture(location_spec: LocationSpec, path: Path = file) -> Location:
             """Create an event adapter."""
             cal = Calendar.from_ical(path.read_text())
-            assert len(cal.events) == 1, f"We need one event only, not {len(cal.events)} in {path.stem}"
+            assert (
+                len(cal.events) == 1
+            ), f"We need one event only, not {len(cal.events)} in {path.stem}"
             return Location(cal.events[0], location_spec)
+
         locals()[file.stem] = pytest.fixture(_fixture)
 
 
-@pytest.fixture(params=[LocationSpec.openstreetmap_org, LocationSpec.bing_com, LocationSpec.google_co_uk])
+@pytest.fixture(
+    params=[
+        LocationSpec.openstreetmap_org,
+        LocationSpec.bing_com,
+        LocationSpec.google_co_uk,
+    ]
+)
 def location_spec(request) -> LocationSpec:
     """The default spec."""
     return request.param()

@@ -18,14 +18,16 @@
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from typing import Optional
 
 from icalendar import Event, vGeo, vText
-import re
 
+GEO_MATCH = re.compile(
+    r"^(?P<lat>[-+]?\d*\.?\d+)\s*,\s*(?P<lon>[-+]?\d*\.?\d+)$"
+)
 
-GEO_MATCH = re.compile(r"^(?P<lat>[-+]?[0-9]*\.?[0-9]+)\s*,\s*(?P<lon>[-+]?[0-9]*\.?[0-9]+)$")
 
 @dataclass
 class LocationSpec:
@@ -40,6 +42,12 @@ class LocationSpec:
         text_url : str
             A url template when the location is given as text.
             At leat {location} is required.
+
+    Examples:
+
+        >>> from icalendar_compatibility import LocationSpec
+        >>> spec = LocationSpec.openstreetmap_org()
+        
     """
 
     geo_url: str
@@ -79,7 +87,7 @@ class LocationSpec:
             lat=lat, lon=lon, zoom=self.zoom if zoom is None else zoom
         )
 
-    def get_text_url(self, location:str, zoom: Optional[int] = None) -> str:
+    def get_text_url(self, location: str, zoom: Optional[int] = None) -> str:
         """Get the url for a text location."""
         return self.text_url.format(
             location=location, zoom=self.zoom if zoom is None else zoom
@@ -89,13 +97,47 @@ class LocationSpec:
 class Location:
     """The location of an event.
 
-    Location(Event())
+    Attributes:
+        text : str
+            The text of the location.
+        url : str
+            The url of the event location.
+            This considers geo information, text and more.
+
+    Examples:
+
+        >>> from icalendar_compatibility import Location, LocationSpec
+        >>> from icalendar import Event
+        >>> event_string = '''
+        ... BEGIN:VEVENT
+        ... SUMMARY:Event in Mountain View with Geo link
+        ... DTSTART:20250115T150000Z
+        ... LOCATION:Mountain View, Santa Clara County, Kalifornien, Vereinigte Staaten von Amerika
+        ... GEO:37.386013;-122.082932
+        ... END:VEVENT
+        ... '''
+        >>> event = Event.from_ical(event_string)
+        >>> location = Location(event, LocationSpec.bing_com())
+        >>> print(location.text)
+        Mountain View, Santa Clara County, Kalifornien, Vereinigte Staaten von Amerika
+        >>> print(location.url)
+        https://www.bing.com/maps?brdr=1&cp=37.386013%7E-122.082932&lvl=16
+
+
     """
 
-    def __init__(self, event: Event, spec: LocationSpec):
-        """Create a new location adapter."""
+    def __init__(self, event: Event, spec: Optional[LocationSpec]=None):
+        """Create a new location adapter.
+
+        Args:
+            event : Event
+                The event to adapt.
+            spec : LocationSpec
+                The specification to use.
+                By default we use Open Street Map.
+        """
         self._event = event
-        self._spec = spec
+        self._spec = LocationSpec.openstreetmap_org() if spec is None else spec
 
     @property
     def raw_text(self) -> vText:
@@ -130,7 +172,7 @@ class Location:
         if match:
             return vGeo((float(match.group("lat")), float(match.group("lon"))))
         return None
-    
+
     @property
     def text(self) -> str:
         """The location text.
@@ -182,5 +224,6 @@ class Location:
             The zoom level of the location.
         """
         return self._spec.zoom
+
 
 __all__ = ["LocationSpec", "Location"]
