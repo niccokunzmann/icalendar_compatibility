@@ -24,9 +24,7 @@ from typing import Optional
 
 from icalendar import Event, vGeo, vText
 
-GEO_MATCH = re.compile(
-    r"^(?P<lat>[-+]?\d*\.?\d+)\s*,\s*(?P<lon>[-+]?\d*\.?\d+)$"
-)
+GEO_MATCH = re.compile(r"^(?P<lat>[-+]?\d*\.?\d+)\s*,\s*(?P<lon>[-+]?\d*\.?\d+)$")
 
 
 @dataclass
@@ -46,8 +44,8 @@ class LocationSpec:
     Examples:
 
         >>> from icalendar_compatibility import LocationSpec
-        >>> spec = LocationSpec.openstreetmap_org()
-        
+        >>> spec = LocationSpec.for_openstreetmap_org()
+
     """
 
     geo_url: str
@@ -55,7 +53,7 @@ class LocationSpec:
     zoom: int = 16
 
     @classmethod
-    def openstreetmap_org(cls, **kw) -> LocationSpec:
+    def for_openstreetmap_org(cls, **kw) -> LocationSpec:
         """Spec for https://openstreetmap.org"""
         return cls(
             geo_url="https://www.openstreetmap.org/#map={zoom}/{lat}/{lon}",
@@ -64,7 +62,7 @@ class LocationSpec:
         )
 
     @classmethod
-    def bing_com(cls, **kw) -> LocationSpec:
+    def for_bing_com(cls, **kw) -> LocationSpec:
         """Spec for https://www.bing.com/maps"""
         return cls(
             geo_url="https://www.bing.com/maps?brdr=1&cp={lat}%7E{lon}&lvl={zoom}",
@@ -73,7 +71,7 @@ class LocationSpec:
         )
 
     @classmethod
-    def google_co_uk(cls, **kw) -> LocationSpec:
+    def for_google_co_uk(cls, **kw) -> LocationSpec:
         """Spec for https://www.google.co.uk/maps"""
         return cls(
             geo_url="https://www.google.co.uk/maps/@{lat},{lon},{zoom}z",
@@ -117,7 +115,7 @@ class Location:
         ... END:VEVENT
         ... '''
         >>> event = Event.from_ical(event_string)
-        >>> location = Location(event, LocationSpec.bing_com())
+        >>> location = Location(event, LocationSpec.for_bing_com())
         >>> print(location.text)
         Mountain View, Santa Clara County, Kalifornien, Vereinigte Staaten von Amerika
         >>> print(location.url)
@@ -126,7 +124,7 @@ class Location:
 
     """
 
-    def __init__(self, event: Event, spec: Optional[LocationSpec]=None):
+    def __init__(self, event: Event, spec: Optional[LocationSpec] = None):
         """Create a new location adapter.
 
         Args:
@@ -137,13 +135,14 @@ class Location:
                 By default we use Open Street Map.
         """
         self._event = event
-        self._spec = LocationSpec.openstreetmap_org() if spec is None else spec
+        self._spec = LocationSpec.for_openstreetmap_org() if spec is None else spec
 
     @property
     def raw_text(self) -> vText:
         r"""The raw event text of the location.
 
-        RFC5545:
+        :rfc:`5545`::
+
             LOCATION:Conference Room - F123\, Bldg. 002
         """
         return self._event.get("LOCATION", vText(""))
@@ -152,7 +151,8 @@ class Location:
     def raw_altrep(self) -> str:
         r"""The alternative representation according to RFC5545.
 
-        RFC5545:
+        :rfc:`5545`::
+        
             LOCATION;ALTREP="http://xyzcorp.com/conf-rooms/f123.vcf":
             Conference Room - F123\, Bldg. 002
         """
@@ -162,7 +162,8 @@ class Location:
     def raw_geo(self) -> Optional[vGeo]:
         """The raw geo location.
 
-        RFC5545:
+        :rfc:`5545`::
+
             GEO:37.386013;-122.082932
         """
         geo = self._event.get("GEO")

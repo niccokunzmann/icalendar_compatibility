@@ -22,6 +22,8 @@ HERE = pathlib.Path(__file__).parent
 PROJECT_PATH = HERE.parent
 
 PYTHON_FILES = list(PROJECT_PATH.rglob("*.py"))
+DOCS_PATH = PROJECT_PATH.parent / "docs"
+RST_FILES = list(DOCS_PATH.rglob("*.rst")) + [PROJECT_PATH.parent / "README.rst"]
 
 MODULE_NAMES = [
     "icalendar_compatibility",
@@ -37,7 +39,8 @@ def test_docstring_of_python_file(module_name):
 
 
 # This collection needs to exclude .tox and other subdirectories
-DOCUMENT_PATHS = [PROJECT_PATH / ".." / "README.md"] + PYTHON_FILES
+DOCUMENT_PATHS = RST_FILES + PYTHON_FILES
+
 
 def test_this_file_is_also_tested():
     """Check we recurse."""

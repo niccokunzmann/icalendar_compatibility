@@ -41,9 +41,9 @@ for file in EVENTS.iterdir():
 
 @pytest.fixture(
     params=[
-        LocationSpec.openstreetmap_org,
-        LocationSpec.bing_com,
-        LocationSpec.google_co_uk,
+        LocationSpec.for_openstreetmap_org,
+        LocationSpec.for_bing_com,
+        LocationSpec.for_google_co_uk,
     ]
 )
 def location_spec(request) -> LocationSpec:
