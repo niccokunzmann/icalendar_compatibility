@@ -35,6 +35,10 @@ dependencies = [
 dev = [
     "pytest",
 ]
+docs = [
+    "sphinx",
+    "sphinx-rtd-theme",
+]
 
 [project.scripts]
 
