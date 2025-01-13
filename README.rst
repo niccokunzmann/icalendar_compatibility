@@ -55,6 +55,6 @@ Related Work
 - Used by the `Open Web Calendar <https://open-web-calendar.quelltext.eu/>`_
 
 
-.. _`documetation`: https://icalendar-compatibility.readthedocs.io
+.. _`documentation`: https://icalendar-compatibility.readthedocs.io
 
 
