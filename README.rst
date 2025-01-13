@@ -35,7 +35,7 @@ Contributing
 ------------
 
 This packages is open-sources so you can use it and improve it for the calendars you use.
-If the calendar does not yield the right information, please `open an issue <>`_
+If the calendar does not yield the right information, please `open an issue <https://github.com/niccokunzmann/icalendar_compatibility/issues>`_!
 
 Installation
 ------------
