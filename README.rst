@@ -17,8 +17,8 @@ Compatibility Functions for ICalendar
     :target: https://github.com/niccokunzmann/icalendar_compatibility/actions/workflows/tests.yml?query=branch%3Amain
     :alt: GitHub Actions build status for main
 
-.. image:: https://readthedocs.org/projects/icalendar_compatibility/badge/?version=latest
-    :target: https://icalendar_compatibility.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/icalendar-compatibility/badge/?version=latest
+    :target: https://icalendar-compatibility.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
 **Simple access to icalendar event information with maximum compatibility.**
@@ -55,6 +55,6 @@ Related Work
 - Used by the `Open Web Calendar <https://open-web-calendar.quelltext.eu/>`_
 
 
-.. _`documetation`: 
+.. _`documetation`: https://icalendar-compatibility.readthedocs.io
 
 
