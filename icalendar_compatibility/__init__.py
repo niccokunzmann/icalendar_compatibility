@@ -22,10 +22,10 @@ from .version import __version__, __version_tuple__, version, version_tuple
 
 __all__ = [
     "Description",
+    "Location",
+    "LocationSpec",
     "__version__",
     "__version_tuple__",
     "version",
     "version_tuple",
-    "LocationSpec",
-    "Location",
 ]

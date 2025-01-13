@@ -152,7 +152,7 @@ class Location:
         r"""The alternative representation according to RFC5545.
 
         :rfc:`5545`::
-        
+
             LOCATION;ALTREP="http://xyzcorp.com/conf-rooms/f123.vcf":
             Conference Room - F123\, Bldg. 002
         """
@@ -227,4 +227,4 @@ class Location:
         return self._spec.zoom
 
 
-__all__ = ["LocationSpec", "Location"]
+__all__ = ["Location", "LocationSpec"]

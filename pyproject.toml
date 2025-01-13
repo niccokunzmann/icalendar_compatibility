@@ -99,6 +99,7 @@ ignore = [
     "ARG002",  # Unused method argument: ...
     "ARG001",  # Unused function argument: ...
     "UP007",   # Optional
+    "E501",    # line too long
 ]
 extend-safe-fixes = [
     "PT006", # Wrong type passed to first argument of @pytest.mark.parametrize; expected {expected_string}

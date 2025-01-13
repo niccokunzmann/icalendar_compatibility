@@ -5,7 +5,6 @@
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-import importlib.metadata
 import datetime
 import os
 
@@ -20,9 +19,7 @@ except ImportError:
     html_theme = "default"
     if not on_rtd:
         print("-" * 74)
-        print(
-            "Warning: sphinx-rtd-theme not installed, building with default " "theme."
-        )
+        print("Warning: sphinx-rtd-theme not installed, building with default theme.")
         print("-" * 74)
 
 source_suffix = ".rst"
@@ -49,7 +46,7 @@ extensions = [
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "icalendar": ("https://icalendar.readthedocs.io/en/latest/", None),
-    }
+}
 
 templates_path = ["_templates"]
 
