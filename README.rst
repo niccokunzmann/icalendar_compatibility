@@ -34,9 +34,9 @@ This package is based on `icalendar`_.
 
 Links:
 
-- `documentation`
-- `source code`
-- `change log`
+- `documentation`_
+- `source code`_
+- `change log`_
 
 Contributing
 ------------
@@ -54,7 +54,7 @@ To install the package, run::
 Documentation
 -------------
 
-Please have a look at the `documentation`.
+Please have a look at the `documentation`_.
 
 Related Work
 ------------
@@ -64,6 +64,6 @@ Related Work
 
 .. _`documentation`: https://icalendar-compatibility.readthedocs.io
 .. _`source code`: https://github.com/niccokunzmann/icalendar_compatibility
-.. _`change log`: https://icalendar-compatibility.readthedocs.io
+.. _`change log`: file:///home/nicco/icalendar_compatibility/html/html/changes.html
 
 
