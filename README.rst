@@ -69,4 +69,8 @@ Related Work
 .. _`source code`: https://github.com/niccokunzmann/icalendar_compatibility
 .. _`change log`: https://icalendar-compatibility.readthedocs.io/en/latest/changes.html
 
+License
+-------
+
+This work is licensed under GPL version 2 or any later version e.g. GPLv3.
 
