@@ -5,8 +5,8 @@ Usage
 The information is extracted from the icalendar components and more compatibility with other ics generators is provided.
 
 
-Description
------------
+Event Description
+-----------------
 
 It would be nice if there was a uniform way for text and HTML description in icalendar.
 However, sometimes HTML and text get thrown into the same field or encoded in different places.
@@ -42,13 +42,13 @@ We can get these descriptions easily and also with compatibility to other softwa
 
 The example above is just one of many in which the HTML description is in an unexpected place.
 
-Compatibility
-~~~~~~~~~~~~~
+Compatibility for Description
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We tested compatibility with :rfc:`5545`, `Mozilla Thunderbird`, `Gancio`, `CMS4Schools.com`.
 
-Location Information
---------------------
+Event Location
+--------------
 
 Location information can be located in the ``LOCATION`` and the ``GEO`` field of :rfc:`5545` events.
 This module creates a unified interface using :class:`icalendar_compatibility.Location`.
@@ -93,7 +93,7 @@ The :class:`icalendar_compatibility.Location` has insight into different attribu
     >>> print(location.url)   # using GEO
     https://www.bing.com/maps?brdr=1&cp=37.386013%7E-122.082932&lvl=16
 
-Compatibility
-~~~~~~~~~~~~~
+Compatibility for Location
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We tested compatibility with :rfc:`5545`, `Mozilla Thunderbird`, `regiojet.cz`.
