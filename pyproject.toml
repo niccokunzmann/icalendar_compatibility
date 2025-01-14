@@ -18,8 +18,7 @@ readme = "README.rst"
 requires-python = ">=3.9"
 # see https://pypi.python.org/pypi?%3Aaction=list_classifiers
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "Framework :: Flask",
+    "Development Status :: 4 - Beta",
     "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
