@@ -1,6 +1,11 @@
 Versions and Changes
 ====================
 
+v0.1.0
+------
+
+- :class:`icalendar_compatibility.Location` uses the URL in the location text
+
 v0.0.3
 ------
 

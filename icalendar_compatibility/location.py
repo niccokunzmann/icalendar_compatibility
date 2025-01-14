@@ -26,6 +26,10 @@ from icalendar import Event, vGeo, vText
 
 GEO_MATCH = re.compile(r"^(?P<lat>[-+]?\d*\.?\d+)\s*,\s*(?P<lon>[-+]?\d*\.?\d+)$")
 
+URL_REGEX = re.compile(
+    r"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)"
+)  # see https://stackoverflow.com/a/3809435/1320237
+
 
 @dataclass
 class LocationSpec:
@@ -194,8 +198,11 @@ class Location:
             return self.raw_altrep
         lon, lat = self.lon, self.lat
         if lon is None or lat is None:
-            if self.text == "":
+            text = self.text
+            if text == "":
                 return ""
+            for url in URL_REGEX.finditer(text):
+                return url.group()
             return self._spec.get_text_url(location=self.text, zoom=self.zoom)
         return self._spec.get_geo_url(lat=lat, lon=lon, zoom=self.zoom)
 

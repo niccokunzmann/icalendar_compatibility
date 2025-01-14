@@ -93,3 +93,9 @@ def test_Location_with_no_location(no_location: Location):
     """Check that the location is empty."""
     assert no_location.text == ""
     assert no_location.url == ""
+
+
+def test_url_in_location_counts_as_url(location_link):
+    """If we have a URL in the location, we use the first URL as the location URL."""
+    assert location_link.url == "https://www.berlin.de/"
+    assert location_link.text == " We meet in https://www.berlin.de/ "
