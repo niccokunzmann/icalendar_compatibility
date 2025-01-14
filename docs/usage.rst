@@ -8,7 +8,7 @@ The information is extracted from the icalendar components and more compatibilit
 Event Description
 -----------------
 
-It would be nice if there was a uniform way for text and HTML description in icalendar.
+It would be nice if there was a uniform way for **text** and **HTML** description in icalendar.
 However, sometimes HTML and text get thrown into the same field or encoded in different places.
 :class:`icalendar_compatibility.Description` takes care of this.
 

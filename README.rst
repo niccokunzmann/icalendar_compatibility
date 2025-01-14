@@ -47,9 +47,12 @@ If the calendar does not yield the right information, please `open an issue <htt
 Installation
 ------------
 
-To install the package, run::
+To install the package from `PyPI`_, run::
 
     pip install icalendar_compatibility
+
+
+.. _`PyPI`: https://pypi.org/project/icalendar-compatibility
 
 Documentation
 -------------
@@ -64,6 +67,6 @@ Related Work
 
 .. _`documentation`: https://icalendar-compatibility.readthedocs.io
 .. _`source code`: https://github.com/niccokunzmann/icalendar_compatibility
-.. _`change log`: file:///home/nicco/icalendar_compatibility/html/html/changes.html
+.. _`change log`: https://icalendar-compatibility.readthedocs.io/en/latest/changes.html
 
 
