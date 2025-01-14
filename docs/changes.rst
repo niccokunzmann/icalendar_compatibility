@@ -1,13 +1,20 @@
 Versions and Changes
 ====================
 
-- v0.0.2
+v0.0.3
+------
 
-    - document development
-    - correct metadata for PyPI
+- Update classifiers for PyPI
 
-- v0.0.1
+v0.0.2
+------
 
-    - create Documentation
-    - add :class:`icalendar_compatibility.Description`
-    - add :class:`icalendar_compatibility.Location`
+- document development
+- correct metadata for PyPI
+
+v0.0.1
+------
+
+- create Documentation
+- add :class:`icalendar_compatibility.Description`
+- add :class:`icalendar_compatibility.Location`

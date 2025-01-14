@@ -14,5 +14,9 @@ Contents
 
    usage
    api
-   changes
    development
+
+.. toctree::
+   :titlesonly:
+
+   changes
