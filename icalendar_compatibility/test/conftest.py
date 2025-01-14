@@ -37,9 +37,9 @@ for file in EVENTS.iterdir():
             def _fixture(location_spec: LocationSpec, path: Path = file) -> Location:
                 """Create an event adapter."""
                 cal = Calendar.from_ical(path.read_text())
-                assert len(cal.events) == 1, (
-                    f"We need one event only, not {len(cal.events)} in {path.stem}"
-                )
+                assert (
+                    len(cal.events) == 1
+                ), f"We need one event only, not {len(cal.events)} in {path.stem}"
                 return Location(cal.events[0], location_spec)
 
         elif "description" in file.stem:
@@ -47,9 +47,9 @@ for file in EVENTS.iterdir():
             def _fixture(path: Path = file) -> Description:
                 """Create an event adapter."""
                 cal = Calendar.from_ical(path.read_text())
-                assert len(cal.events) == 1, (
-                    f"We need one event only, not {len(cal.events)} in {path.stem}"
-                )
+                assert (
+                    len(cal.events) == 1
+                ), f"We need one event only, not {len(cal.events)} in {path.stem}"
                 return Description(cal.events[0])
 
         locals()[file.stem] = pytest.fixture(_fixture)
