@@ -23,11 +23,8 @@ Compatibility Functions for ICalendar
 
 **Simple access to icalendar event information with maximum compatibility.**
 
-ICS files, altough specified by `RFC 5545`_ differ in how to specify event information.
+ICS files - altough specified by `RFC 5545`_ - differ widely in how to specify event information.
 This packages provides a unified interface.
-
-This package is based on `icalendar`_.
-
 .. _`RFC 5545`: https://www.rfc-editor.org/rfc/rfc5545.html
 .. _`icalendar`: https://pypi.org/project/icalendar/
 
@@ -63,7 +60,7 @@ Related Work
 ------------
 
 - Used by the `Open Web Calendar <https://open-web-calendar.quelltext.eu/>`_
-
+- This package is based on `icalendar`_.
 
 .. _`documentation`: https://icalendar-compatibility.readthedocs.io
 .. _`source code`: https://github.com/niccokunzmann/icalendar_compatibility
