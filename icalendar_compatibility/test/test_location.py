@@ -173,7 +173,7 @@ def test_quote_unquote():
         assert unquote(LocationSpec.quote(c)) == c
 
 
-@pytest.mark.parametrize("char", ["%", "=", "?", "/", "&", "."])
+@pytest.mark.parametrize("char", ["%", "=", "?", "/", "&", ".", "<", ">", '"', "'"])
 def test_quote_certain_characters(char):
     quoted = LocationSpec.quote(char)
     assert quoted.startswith("%")
