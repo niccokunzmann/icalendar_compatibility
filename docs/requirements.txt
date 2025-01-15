@@ -4,6 +4,8 @@
 #
 #    pip-compile --output-file=docs/requirements.txt docs/requirements.in
 #
+-e file:///home/nicco/icalendar_compatibility
+    # via file:///home/nicco/icalendar-compatibility
 alabaster==1.0.0
     # via sphinx
 babel==2.16.0
@@ -18,8 +20,6 @@ docutils==0.21.2
     #   sphinx-rtd-theme
 icalendar==6.1.0
     # via icalendar-compatibility
-icalendar-compatibility[docs] @ file:///home/nicco/icalendar_compatibility
-    # via file:///home/nicco/icalendar-compatibility
 idna==3.10
     # via requests
 imagesize==1.4.1

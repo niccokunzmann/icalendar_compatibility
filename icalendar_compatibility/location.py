@@ -76,6 +76,15 @@ class LocationSpec:
         )
 
     @classmethod
+    def for_google_com(cls, **kw) -> LocationSpec:
+        """Spec for https://www.google.com/maps"""
+        return cls(
+            geo_url="https://www.google.com/maps/@{lat},{lon},{zoom}z",
+            text_url="https://www.google.com/maps/search/{location}",
+            **kw,
+        )
+
+    @classmethod
     def for_google_co_uk(cls, **kw) -> LocationSpec:
         """Spec for https://www.google.co.uk/maps"""
         return cls(
