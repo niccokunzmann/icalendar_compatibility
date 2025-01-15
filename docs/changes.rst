@@ -1,6 +1,12 @@
 Versions and Changes
 ====================
 
+v0.1.2
+------
+
+- Improve documentation
+- Add Google Maps example
+
 v0.1.1
 ------
 
