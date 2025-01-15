@@ -1,6 +1,12 @@
 Versions and Changes
 ====================
 
+v0.1.1
+------
+
+- Add :func:`icalendar_compatibility.LocationSpec.quote`
+- Make sure location data is properly escaped when put into a URL.
+
 v0.1.0
 ------
 

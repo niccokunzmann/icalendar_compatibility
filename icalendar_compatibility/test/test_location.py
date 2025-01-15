@@ -14,6 +14,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see
 # <https://www.gnu.org/licenses/>.
+from urllib.parse import quote, unquote
+
+import pytest
+from icalendar import Event
+
 from icalendar_compatibility import Location, LocationSpec
 
 
@@ -99,3 +104,70 @@ def test_url_in_location_counts_as_url(location_link):
     """If we have a URL in the location, we use the first URL as the location URL."""
     assert location_link.url == "https://www.berlin.de/"
     assert location_link.text == " We meet in https://www.berlin.de/ "
+
+
+@pytest.mark.parametrize(
+    ("forbidden_content"),
+    [
+        "/../../../",
+        "?asd=asd",
+        "..",
+        " asd ",
+        "?a",
+        "\r\n",
+    ],
+)
+def test_location_information_is_inserted_url_escaped(forbidden_content):
+    """We should test that the / is escaped and that characters like ? do not appear. They would break the URL.
+
+    Escape:
+    - spaces and other characters
+    - dots
+    - slash
+    - ?
+    """
+    event = Event()
+    event.add("LOCATION", forbidden_content)
+    location = Location(event)
+    assert forbidden_content not in location.url
+    quoted = LocationSpec.quote(forbidden_content)
+    assert quoted in location.url
+
+
+INVALID_EVENT_GEO = """
+BEGIN:VEVENT
+GEO:12/../../..,123
+END:VEVENT
+"""
+
+
+def test_geo_location_is_also_escaped():
+    """The geo location should not work with bad input."""
+    event = Event.from_ical(INVALID_EVENT_GEO)
+    location = Location(event)
+    assert location.url == ""
+    assert location.lat is None
+    assert location.lon is None
+
+
+def test_location_with_unicode():
+    """Test that the location works with unicode."""
+    event = Event()
+    name = "České Budějovice"
+    event.add("LOCATION", name)
+    location = Location(event)
+    assert name not in location.url
+    assert quote(name) in location.url
+
+
+def test_replace_spec_with_empty_spec(location_geo: Location):
+    """The spec can be empty."""
+    location_geo.spec = LocationSpec.for_no_url()
+    assert location_geo.url == ""
+
+
+def test_quote_unquote():
+    """Make sure we can quote and unquote all the strings."""
+    for i in range(256):
+        c = chr(i)
+        assert unquote(LocationSpec.quote(c)) == c

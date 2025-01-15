@@ -21,6 +21,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 from typing import Optional
+from urllib.parse import quote
 
 from icalendar import Event, vGeo, vText
 
@@ -83,6 +84,11 @@ class LocationSpec:
             **kw,
         )
 
+    @classmethod
+    def for_no_url(cls) -> LocationSpec:
+        """Return a spec that creates empty URLs always."""
+        return cls(geo_url="", text_url="")
+
     def get_geo_url(self, *, lat: float, lon: float, zoom: Optional[int] = None) -> str:
         """Get the url for a geo location."""
         return self.geo_url.format(
@@ -92,8 +98,16 @@ class LocationSpec:
     def get_text_url(self, location: str, zoom: Optional[int] = None) -> str:
         """Get the url for a text location."""
         return self.text_url.format(
-            location=location, zoom=self.zoom if zoom is None else zoom
+            location=self.quote(location), zoom=self.zoom if zoom is None else zoom
         )
+
+    @staticmethod
+    def quote(string: str):
+        """Quote a string to fit into any place in a URL.
+
+        We also replace the . as .. has a special meaning.
+        """
+        return quote(string, safe="").replace(".", "%2e")
 
 
 class Location:
@@ -136,7 +150,7 @@ class Location:
                 The event to adapt.
             spec : LocationSpec
                 The specification to use.
-                By default we use Open Street Map.
+                By default we use OpenStreetMap.
         """
         self._event = event
         self._spec = LocationSpec.for_openstreetmap_org() if spec is None else spec
@@ -232,6 +246,16 @@ class Location:
             The zoom level of the location.
         """
         return self._spec.zoom
+
+    @property
+    def spec(self) -> LocationSpec:
+        """The location spec we use."""
+        return self._spec
+
+    @spec.setter
+    def spec(self, new_spec: LocationSpec):
+        """Set the location spec."""
+        self._spec = new_spec
 
 
 __all__ = ["Location", "LocationSpec"]
