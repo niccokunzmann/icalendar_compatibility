@@ -99,7 +99,7 @@ Compatibility for Location
 We tested :class:`icalendar_compatibility.Location` to be compatibile with :rfc:`5545`, `Mozilla Thunderbird`, `regiojet.cz`.
 
 Preconfigured Maps
-------------------
+~~~~~~~~~~~~~~~~~~
 
 We have several maps already preconfigured:
 
@@ -110,7 +110,7 @@ We have several maps already preconfigured:
 - no map - :func:`icalendar_compatibility.LocationSpec.for_no_url`
 
 Custom Maps
------------
+~~~~~~~~~~~
 
 You can configure your own url templates.
 This is useful when:
