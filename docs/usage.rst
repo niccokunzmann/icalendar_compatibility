@@ -181,7 +181,7 @@ The example below create a specification for a custom map:
     ...     geo_url="https://my.map/#{lat}/{lon}"           # you can add the optional {zoom} parameter
     ... )
 
-With the cusom map configured, the URL for an event in Berlin can be seen below:
+With the custom map configured, the URL for an event in Berlin can be seen below:
 
 .. code-block:: python
 
