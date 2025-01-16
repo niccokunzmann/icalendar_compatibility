@@ -21,7 +21,7 @@ Compatibility Functions for ICalendar
     :target: https://icalendar-compatibility.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-**Simple access to icalendar event information with maximum compatibility.**
+**Icalendar event information with maximum compatibility to various ICS sources.**
 
 ICS files - altough specified by `RFC 5545`_ - differ widely in how to specify event information.
 This packages provides a unified interface.
