@@ -13,7 +13,7 @@ authors = [
 maintainers = [
   { name="Nicco Kunzmann", email="niccokunzmann@rambler.ru" },
 ]
-description = "Read icalendar properties with maximum compatibility to all calendar providers."
+description = "ICalendar event information with maximum compatibility to various ICS sources."
 readme = "README.rst"
 requires-python = ">=3.9"
 # see https://pypi.python.org/pypi?%3Aaction=list_classifiers
