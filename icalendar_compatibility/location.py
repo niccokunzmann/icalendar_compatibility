@@ -202,6 +202,15 @@ class Location:
         return None
 
     @property
+    def geo(self) -> Optional[vGeo]:
+        """The geo location from latitude and longitude."""
+        lat = self.lat
+        lon = self.lon
+        if lon is not None and lat is not None:
+            return vGeo((lat, lon))
+        return None
+
+    @property
     def text(self) -> str:
         """The location text.
 

@@ -17,7 +17,7 @@
 from urllib.parse import quote, unquote
 
 import pytest
-from icalendar import Event
+from icalendar import Event, vGeo
 
 from icalendar_compatibility import Location, LocationSpec
 
@@ -46,6 +46,7 @@ def test_geo_location_given(location_geo: Location, location_spec: LocationSpec)
     """Check that we have the namme and a URL."""
     assert location_geo.lat == 37.386013
     assert location_geo.lon == -122.082932
+    assert location_geo.geo == vGeo((37.386013, -122.082932))
     assert location_geo.zoom == location_spec.zoom
 
 
@@ -148,6 +149,7 @@ def test_geo_location_is_also_escaped():
     assert location.url == ""
     assert location.lat is None
     assert location.lon is None
+    assert location.geo is None
 
 
 def test_location_with_unicode():
