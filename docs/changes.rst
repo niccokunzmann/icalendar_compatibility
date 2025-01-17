@@ -1,6 +1,11 @@
 Versions and Changes
 ====================
 
+v0.1.3
+------
+
+- Add :attr:`icalendar_compatibility.Location.geo` to access the geo location easily.
+
 v0.1.2
 ------
 
