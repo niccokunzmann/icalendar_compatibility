@@ -98,6 +98,16 @@ class LocationSpec:
         """Return a spec that creates empty URLs always."""
         return cls(geo_url="", text_url="")
 
+    @classmethod
+    def for_geo_url(cls) -> LocationSpec:
+        """Spec for the geo:{lat},{lon} links.
+
+        :rfc:`5870`::
+
+            geo:48.2010,16.3695
+        """
+        return cls(geo_url="geo:{lat},{lon}", text_url="")
+
     def get_geo_url(self, *, lat: float, lon: float, zoom: Optional[int] = None) -> str:
         """Get the url for a geo location."""
         return self.geo_url.format(

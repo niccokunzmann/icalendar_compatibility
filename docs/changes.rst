@@ -1,6 +1,11 @@
 Versions and Changes
 ====================
 
+v0.1.4
+------
+
+- Add :func:`icalendar_compatibility.LocationSpec.for_geo_url` for ``geo:`` links.
+
 v0.1.3
 ------
 

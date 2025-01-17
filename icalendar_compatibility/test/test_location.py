@@ -180,3 +180,10 @@ def test_quote_certain_characters(char):
     quoted = LocationSpec.quote(char)
     assert quoted.startswith("%")
     assert quoted != char
+
+
+def test_location_spec_with_geo_url():
+    """Check the geo url spec."""
+    spec = LocationSpec.for_geo_url()
+    assert spec.get_geo_url(lat=48.201, lon=16.3695) == "geo:48.201,16.3695"
+    assert spec.get_text_url("test") == ""

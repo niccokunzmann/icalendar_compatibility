@@ -103,6 +103,7 @@ Preconfigured Maps
 
 We have several maps already preconfigured:
 
+- geo: URLs (:rfc:`5870`) - :func:`icalendar_compatibility.LocationSpec.for_geo_url`
 - https://openstreetmap.org - :func:`icalendar_compatibility.LocationSpec.for_openstreetmap_org`
 - https://www.bing.com/maps - :func:`icalendar_compatibility.LocationSpec.for_bing_com`
 - https://www.google.com/maps - :func:`icalendar_compatibility.LocationSpec.for_google_com`
