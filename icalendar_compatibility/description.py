@@ -101,9 +101,7 @@ class Description:
 
         """
         description = self.raw_description
-        # print(self._event)
         altrep = description.params.get("ALTREP")
-        # print("altrep", description, description.params)
         if altrep is not None and "," in altrep:
             data, content = altrep.split(",", 1)
             if data == "data:text/html":
